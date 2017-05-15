@@ -26,4 +26,6 @@ class Player < ActiveRecord::Base
   # def draw
   #
   # end
+
+
 end
