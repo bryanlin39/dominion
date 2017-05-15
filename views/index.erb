@@ -1,3 +1,4 @@
+<!--pull player id off param-->
 <div id="boardDiv">
   <div class="row">
     <div class="col-md-2 card board_cards">
@@ -17,11 +18,12 @@
       </div>
     </div>
     <div class="col-md-2" id='statsDiv'>
-      <h4>Money:</h4>
-      <h4>actions:</h4>
-      <h4>buys:</h4>
-      <button type="button" name="button" class="btn btn-danger">End Action Phase</button>
-      <button type="button" name="button" class="btn btn-danger">End Turn</button>
+      <h4>Money:</h4> <!-- define a .money method for player -->
+      <h4 id='actText'>Actions:</h4>
+      <h4 id='buyText'>Buys:</h4>
+      <button type="button" id='endAct' name="button" class="btn btn-danger">End Action Phase</button>
+      <!--hidden input with next player-->      
+      <button type="button" id='endTurn' name="button" class="btn btn-danger">End Turn</button>
     </div>
   </div>
 </div>

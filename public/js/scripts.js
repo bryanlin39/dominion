@@ -23,6 +23,7 @@ document.ready(function(){
     if(actionPhase&&moves['actions']>0){
       //do the thing
       moves['actions']--;
+      $('#actText').text(moves['actions'])
     }
     if(moves['actions']===0){
       endAct();
@@ -33,12 +34,20 @@ document.ready(function(){
     if(buyPhase&&moves['buys']>0){
       //do the thing
       moves['buys']--;
+      $('#buyText').text(moves['buys'])
     }
     if(moves['buys']===0||moves['money']===0){
       endTurn();
     }
   });
 
-
+  $('button').click(function(){
+    if (this.id = 'endAct'){
+      endAct();
+    }
+    else if (this.id= 'endTurn'){
+      endTurn();
+    }
+  });
 
 });
