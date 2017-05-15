@@ -10,16 +10,16 @@ class Player < ActiveRecord::Base
     hand=draw_cards.shift(5)
     if hand.length < 5
       self.shuffle_deck
-      # draw=Deck.where(player_id: self.id, location: "draw")
-      # draw_cards = []
-      draw.each { |card| draw_cards.push(card) }
-      more_cards = draw_cards.shift(5-hand.length)
+      new_draw = Deck.where(player_id: self.id, location: "draw")
+      new_draw_cards = []
+      new_draw.each { |card| new_draw_cards.push(card) }
+      more_cards = new_draw_cards.shift(5-hand.length)
       more_cards.each { |card| hand.push(card) }
-binding.pry
     end
     hand.each() do |card|
       card.update({:location => "hand"})
     end
+binding.pry
   end
   #each player should discard_hand after action and buy phase complete
   def discard_hand

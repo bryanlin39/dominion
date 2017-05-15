@@ -42,8 +42,8 @@ describe Player do
       card = Card.create(name: 'Province')
       3.times do
         Deck.create(player_id: player.id, card_id: card.id)
+        Deck.update(location: 'draw')
       end
-      player.shuffle_deck
       2.times do
         Deck.create(player_id: player.id, card_id: card.id)
       end
