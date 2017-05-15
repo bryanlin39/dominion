@@ -6,12 +6,12 @@ class Player < ActiveRecord::Base
   def draw_hand
     draw=Deck.where(player_id: self.id, location: "draw")
     hand=draw.shift(5)
-    if hand.length < 5
-      self.shuff
-      draw.shift(5-hand.length).each do |card|
-        hand.push(card)
-      end
-    end
+    # if hand.length < 5
+    #   self.shuff
+    #   draw.shift(5-hand.length).each do |card|
+    #     hand.push(card)
+    #   end
+    # end
     hand.each() do |card|
       card.update({:location => "hand"})
     end

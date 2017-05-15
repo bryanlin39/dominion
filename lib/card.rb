@@ -4,7 +4,7 @@ class Card < ActiveRecord::Base
   belongs_to :supplies
 
   #rules
-  def play(player)
-    player.buys=+buy_value
-  end
+  # def play(player)
+  #   player.buys=+buy_value
+  # end
 end
