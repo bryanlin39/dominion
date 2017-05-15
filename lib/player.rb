@@ -19,7 +19,6 @@ class Player < ActiveRecord::Base
     hand.each() do |card|
       card.update({:location => "hand"})
     end
-binding.pry
   end
   #each player should discard_hand after action and buy phase complete
   def discard_hand
