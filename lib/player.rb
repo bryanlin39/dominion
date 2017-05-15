@@ -2,12 +2,12 @@ class Player < ActiveRecord::Base
   has_many :decks
   has_many :cards, through: :decks
 
-#use shuffle method as part of converting discard to draw
+  #each player should draw_hand at the end of their turn
   def draw_hand
     draw=Deck.where(player_id: self.id, location: "draw")
     hand=draw.shift(5)
     if hand.length < 5
-      self.shuff
+      self.shuffle_deck
       draw.shift(5-hand.length).each do |card|
         hand.push(card)
       end
@@ -16,14 +16,30 @@ class Player < ActiveRecord::Base
       card.update({:location => "hand"})
     end
   end
-  def discard
+  #each player should discard_hand after action and buy phase complete
+  def discard_hand
     hand=Deck.where(player_id: self.id, location: "hand")
     hand.each { |card| card.update({:location => "discard"}) }
   end
-  def shuff
 
+  #use shuffle_deck when draw pile is empty
+  def shuffle_deck
+    draw = Deck.where(player_id: self.id, location: "discard").shuffle
+    draw.each { |card| card.update({:location => "draw"}) }
   end
+  
   # def draw
   #
   # end
+
+  def find_player(id)
+    found_player = nil
+    Player.all.each do |player|
+      if player.id == id.to_i
+        found_player = player
+      end
+    end
+    found_player
+  end
+
 end
