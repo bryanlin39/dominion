@@ -16,7 +16,7 @@ class Supply < ActiveRecord::Base
         counter+=1;
       end
     end
-    if counter>=3||province_amount<=0 do
+    if counter>=3||province_amount<=0
       result = true;
     end
     result
