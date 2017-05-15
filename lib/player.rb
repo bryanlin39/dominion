@@ -15,7 +15,6 @@ class Player < ActiveRecord::Base
       draw.each { |card| draw_cards.push(card) }
       more_cards = draw_cards.shift(5-hand.length)
       more_cards.each { |card| hand.push(card) }
-binding.pry
     end
     hand.each() do |card|
       card.update({:location => "hand"})
