@@ -1,0 +1,6 @@
+development:
+  adapter: postgresql
+  database: dominion_development
+test:
+  adapter: postgresql
+  database: dominion_test
