@@ -24,10 +24,14 @@ class Player < ActiveRecord::Base
 
   #use shuffle_deck when draw pile is empty
   def shuffle_deck
-    draw = Deck.where(player_id: self.id, location: "discard").shuffle
-    draw.each { |card| card.update({:location => "draw"}) }
+    draw = Deck.where(player_id: self.id, location: "discard")
+    # draw = draw.shuffle
+
+    draw.each do |card|
+      card.update({:location => 'draw'})
+    end
   end
-  
+
   # def draw
   #
   # end

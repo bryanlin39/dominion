@@ -1,8 +1,8 @@
 class Deck < ActiveRecord::Base
-  belongs_to :players
-  belongs_to :cards
+  belongs_to :player
+  belongs_to :card
 
-  before_save(:discard)
+  before_create(:discard)
 
   private
   def discard
