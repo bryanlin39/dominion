@@ -8,7 +8,11 @@ class Supply < ActiveRecord::Base
 
   def self.game_over?
     result = false
-    # province_amount = Supply.where('card_id=3')[0].amount #placeholder for province id
+    if Supply.where('card_id=3')[0]!=nil
+      province_amount = Supply.where('card_id=3')[0].amount
+    else
+      province_amount = 50
+    end
     counter = 0
     Supply.all.each do |card|
       found_card = Card.find(card.card_id.to_i)
@@ -22,4 +26,14 @@ class Supply < ActiveRecord::Base
     end
     result
   end
+
+  def self.board
+    result = []
+    Supply.all.each do |card|
+      found_card = Card.find(card.card_id.to_i)
+      result.push([found_card,card.amount])
+    end
+    result
+  end
+
 end

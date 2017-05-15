@@ -12,7 +12,9 @@ function endAct() {
 }
 
 
-document.ready(function(){
+$(document).ready(function(){
+  boardArr = $('#boardData').attr('data')
+  console.log(boardArr)
   $('.hand_cards').click(function(){
     if(actionPhase&&moves['actions']>0){
       //do the thing

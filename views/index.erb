@@ -1,5 +1,5 @@
 
-
+<div id='boardData' data='<%=@board%>'></div>
 <div id="boardDiv">
   <div class="row">
     <div class="col-md-2 card board_cards">
@@ -19,13 +19,13 @@
       </div>
     </div>
     <div class="col-md-2" id='statsDiv'>
-      <h4>Money:<%= @player.money %></h4> <!-- define a .money method for player -->
+      <h4>Money:</h4> <!-- define a .money method for player -->
       <h4 id='actText'>Actions: 1</h4>
       <h4 id='buyText'>Buys: 1</h4>
       <button type="button" id='endAct' name="button" class="btn btn-danger">End Action Phase</button>
 
       <form class="" action="/<%= @next_player %>%>" method="post">
-        <input type="button" name="last_player" value="<%=@player.player_num%>">
+        <input type="hidden" name="last_player" value="<%=@player.player_num%>">
         <button type="submit" id='endTurn' name="button" class="btn btn-danger">End Turn</button>
       </form>
     </div>
