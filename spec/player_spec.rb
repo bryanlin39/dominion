@@ -48,8 +48,7 @@ describe Player do
         Deck.create(player_id: player.id, card_id: card.id)
       end
       player.draw_hand
-      hand = Deck.where(player_id: player.id, location: "hand")
-      expect(hand.length).to eq(5)
+      expect(Deck.where(player_id: player.id, location: "hand").length).to eq(5)
     end
   end
 end
