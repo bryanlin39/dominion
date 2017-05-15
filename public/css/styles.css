@@ -1,0 +1,46 @@
+#title {
+  text-align: center;
+  font-size: 50px;
+}
+
+body{
+  padding-top: 40px;
+}
+
+#boardDiv {
+  margin: auto;
+  background-color: black;
+  height: 800px;
+  padding: 30px;
+}
+.card{
+  background: teal;
+  height: 200px;
+}
+
+#playerDiv {
+  margin: auto;
+  background-color: red;
+  height: 300px;
+  padding: 0px;
+}
+#titleDiv{
+  height: 20%;
+  margin: 0px;
+}
+#titleDiv h1,h3{
+  display: inline-block;
+}
+#playerDiv > .row{
+  height: 80%;
+  background: blue;
+}
+#handDiv{
+  background: green;
+  height: 100%;
+  padding: 20px;
+}
+
+#statsDiv button{
+  margin-top: 40%;
+}
