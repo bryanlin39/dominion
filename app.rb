@@ -5,12 +5,6 @@ Dir[File.dirname(__FILE__) + '/lib/*.rb'].each { |file| require file }
 also_reload('lib/**/*.rb')
 
 get('/') do
-
-  act1 = Card.create({:name=>'action1', :card_type=>'action'})
-  Supply.create({:card_id=>act1.id, :amount=>1})
-  Player.create({:player_num=>1})
-  Player.create({:player_num=>2})
-  Player.create({:player_num=>3})
   @board = Supply.board
   @player = Player.all.sample
   #shuffle and draw
