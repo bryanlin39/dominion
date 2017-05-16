@@ -23,8 +23,10 @@ post('/:id') do
   erb(:index)
 end
 
-get('/cards') do
-  
+get('/draw') do
+  Card.create({:name=>'Woodcutter', :cost=>3, :rules=>'', :money_value=>0, :victory_value=>0, :card_type=>'action', :image =>'/img/woodcutter.jpg' })
+  binding.pry
+  #Deck.where(player_id=)
 end
 
 get('/kill')do

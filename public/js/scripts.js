@@ -58,9 +58,11 @@ $(document).ready(function(){
   });
   $('#test').click(function(){
     $.ajax({
-      url: '/test',
-      success: function(result){
-        alert(result)
+      url: '/draw',
+      //current player, # of cards
+      data: {'test':'test'},
+      success: function(){
+        //create new card divs
       }
     })
   })
