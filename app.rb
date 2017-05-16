@@ -25,5 +25,4 @@ get('/kill')do
   Player.destroy_all
   Deck.destroy_all
   Card.destroy_all
-  erb(:index)
 end

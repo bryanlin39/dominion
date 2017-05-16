@@ -6,6 +6,10 @@ end
 class Supply < ActiveRecord::Base
   has_many :cards
 end
+class Player < ActiveRecord::Base
+  has_many :decks
+  has_many :cards, through: :decks
+end
 
 estate=Card.create({:name=>'Estate', :cost=>2, :rules=>'', :money_value=>0, :victory_value=>1, :card_type=>'victory', :image =>'/img/estate.jpg' })
 duchy=Card.create({:name=>'Duchy', :cost=>5, :rules=>'', :money_value=>0, :victory_value=>3, :card_type=>'victory', :image =>'/img/duchy.jpg' })
@@ -30,3 +34,8 @@ Supply.create({:card_id=>village.id, :amount=>10})
 Supply.create({:card_id=>chapel.id, :amount=>10})
 Supply.create({:card_id=>market.id, :amount=>10})
 Supply.create({:card_id=>woodcutter.id, :amount=>10})
+
+Player.create({:name=>'David', :victory_points=>0, :player_num=>3})
+Player.create({:name=>'Ilene', :victory_points=>0, :player_num=>1})
+Player.create({:name=>'Jon', :victory_points=>0, :player_num=>2})
+Player.create({:name=>'Bryan', :victory_points=>0, :player_num=>4})
