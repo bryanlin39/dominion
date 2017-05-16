@@ -16,8 +16,8 @@ gold=Card.create({:name=>'Gold', :cost=>6, :rules=>'', :money_value=>3, :victory
 smithy=Card.create({:name=>'Smithy', :cost=>4, :rules=>'', :money_value=>0, :victory_value=>0, :card_type=>'action', :image =>'/img/smithy.jpg' })
 village=Card.create({:name=>'Village', :cost=>3, :rules=>'', :money_value=>0, :victory_value=>0, :card_type=>'action', :image =>'/img/village.jpg' })
 chapel=Card.create({:name=>'Chapel', :cost=>2, :rules=>'', :money_value=>0, :victory_value=>0, :card_type=>'action', :image =>'/img/chapel.jpg' })
-market=Card.create({:name=>'Market', :cost=>5, :rules=>'', :money_value=>1, :victory_value=>0, :card_type=>'action', :image =>'/img/market.jpg' })
-woodcutter=Card.create({:name=>'Woodcutter', :cost=>3, :rules=>'', :money_value=>2, :victory_value=>0, :card_type=>'action', :image =>'/img/woodcutter.jpg' })
+market=Card.create({:name=>'Market', :cost=>5, :rules=>'', :money_value=>0, :victory_value=>0, :card_type=>'action', :image =>'/img/market.jpg' })
+woodcutter=Card.create({:name=>'Woodcutter', :cost=>3, :rules=>'', :money_value=>0, :victory_value=>0, :card_type=>'action', :image =>'/img/woodcutter.jpg' })
 
 Supply.create({:card_id=>estate.id, :amount=>24})
 Supply.create({:card_id=>duchy.id, :amount=>12})
