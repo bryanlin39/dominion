@@ -23,10 +23,16 @@ post('/:id') do
   erb(:index)
 end
 
+#ajax methods
 get('/draw') do
-  Card.create({:name=>'Woodcutter', :cost=>3, :rules=>'', :money_value=>0, :victory_value=>0, :card_type=>'action', :image =>'/img/woodcutter.jpg' })
+# figure out how to get player id
+  player = Player.find(id)
+  player.draw_hand(params[:number_to_draw])
   binding.pry
-  #Deck.where(player_id=)
+end
+get('buy') do
+  player = Player.find(id)
+  # player.gain somthing things
 end
 
 get('/kill')do

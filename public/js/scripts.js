@@ -60,7 +60,8 @@ $(document).ready(function(){
     $.ajax({
       url: '/draw',
       //current player, # of cards
-      data: {'test':'test'},
+// CHANGE CODE BELOW (obviously)
+      data: {'id':'test', 'number_to_draw':'whatever the card says its value is'},
       success: function(){
         //create new card divs
       }
