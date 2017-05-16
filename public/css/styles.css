@@ -9,18 +9,23 @@ body{
 
 #boardDiv {
   margin: auto;
-  background-color: black;
+  background-color: grey;
   height: 800px;
-  padding: 30px;
+  padding: 20px;
+}
+.cardDiv{
+  height: 200px;
+  padding: 10px;
 }
 .card{
-  background: teal;
-  height: 200px;
+  margin: auto;
+  background: red;
+  height: 175px;
 }
 
 #playerDiv {
   margin: auto;
-  background-color: red;
+  background-color: lightpink;
   height: 300px;
   padding: 0px;
 }
@@ -33,7 +38,7 @@ body{
 }
 #playerDiv > .row{
   height: 80%;
-  background: blue;
+  background: lightblue;
 }
 #handDiv{
   background: green;
