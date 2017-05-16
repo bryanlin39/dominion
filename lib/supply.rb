@@ -40,7 +40,8 @@ class Supply < ActiveRecord::Base
         'amount'=>card.amount,
         'card_type'=>found_card.card_type,
         'money_value'=>found_card.money_value,
-        'victory_value'=>found_card.victory_value
+        'victory_value'=>found_card.victory_value,
+        'image'=>found_card.image
         })
     end
     result
