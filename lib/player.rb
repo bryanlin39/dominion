@@ -52,4 +52,13 @@ class Player < ActiveRecord::Base
     found_player
   end
 
+  def total_victory_points
+    victory_cards = self.cards.where(card_type: 'victory')
+    total_points = 0
+    victory_cards.each do |card|
+      total_points += card.victory_value
+    end
+    total_points
+  end
+
 end

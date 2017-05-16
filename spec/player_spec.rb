@@ -96,4 +96,15 @@ describe Player do
       expect(Deck.where(card_id: card.id)[0].location).to eq('discard')
     end
   end
+
+  describe '#total_victory_points' do
+    it "calculates the total amount of victory points for a player" do
+      player = Player.create(name: 'Ilene')
+      duchy = Card.create(card_type: 'victory', victory_value: 3)
+      province = Card.create(card_type: 'victory', victory_value: 6)
+      Deck.create(player_id: player.id, card_id: duchy.id)
+      Deck.create(player_id: player.id, card_id: province.id)
+      expect(player.total_victory_points).to eq(9)
+    end
+  end
 end
