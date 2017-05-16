@@ -1,33 +1,32 @@
-
-<div id='boardData' data='<%=@board%>'></div>
-<div id="boardDiv">
-  <div class="row">
-    <div class="col-md-2 card board_cards">
-      <img src="#" alt="" />
+<div class="container">
+  <div id='boardData' data-stuff='<%=@board.to_json%>'></div>
+<!-- <div id='handData' data-stuff='<%=@board.to_json%>'></div> -->
+  <div id="boardDiv">
+    <div class="row" id='boardRow'>
     </div>
   </div>
-</div>
-<div id="playerDiv">
-  <div id='titleDiv'>
-    <h1>PLAYER NAME</h1>
-    <h3>Victory Points:</h3>
-  </div>
-  <div class="row">
-    <div class="col-md-10 row" id="handDiv">
-      <div class="col-md-2 card hand_cards">
-        <img src="#" alt="" />
+  <div id="playerDiv">
+    <div id='titleDiv'>
+      <h1>PLAYER NAME</h1>
+      <h3>Victory Points:</h3>
+    </div>
+    <div class="row">
+      <div class="col-md-10 row" id="handDiv">
+        <div class="col-md-2 card hand_cards">
+          <img src="#" alt="" />
+        </div>
       </div>
-    </div>
-    <div class="col-md-2" id='statsDiv'>
-      <h4>Money:</h4> <!-- define a .money method for player -->
-      <h4 id='actText'>Actions: 1</h4>
-      <h4 id='buyText'>Buys: 1</h4>
-      <button type="button" id='endAct' name="button" class="btn btn-danger">End Action Phase</button>
+      <div class="col-md-2" id='statsDiv'>
+        <h4>Money:</h4> <!-- define a .money method for player -->
+        <h4 id='actText'>Actions: 1</h4>
+        <h4 id='buyText'>Buys: 1</h4>
+        <button type="button" id='endAct' name="button" class="btn btn-danger">End Action Phase</button>
 
-      <form class="" action="/<%= @next_player %>%>" method="post">
-        <input type="hidden" name="last_player" value="<%=@player.player_num%>">
-        <button type="submit" id='endTurn' name="button" class="btn btn-danger">End Turn</button>
-      </form>
+        <form class="" action="/<%= @next_player %>%>" method="post">
+          <input type="hidden" name="last_player" value="<%=@player.player_num%>">
+          <button type="submit" id='endTurn' name="button" class="btn btn-danger">End Turn</button>
+        </form>
+      </div>
     </div>
   </div>
 </div>

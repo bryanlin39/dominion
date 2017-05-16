@@ -13,8 +13,14 @@ function endAct() {
 
 
 $(document).ready(function(){
-  boardArr = $('#boardData').attr('data')
+  boardArr = $('#boardData').data('stuff')
   console.log(boardArr)
+  for(i=0;i<boardArr.length;i++){
+    $('#boardRow').append('<div class="col-md-2 cardDiv"><img class="card board_cards" src="/img/smithy.jpg"></div>')
+  }
+
+
+
   $('.hand_cards').click(function(){
     if(actionPhase&&moves['actions']>0){
       //do the thing

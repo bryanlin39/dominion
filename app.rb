@@ -7,9 +7,7 @@ also_reload('lib/**/*.rb')
 get('/') do
 
   act1 = Card.create({:name=>'action1', :card_type=>'action'})
-  act2 = Card.create({:name=>'action2', :card_type=>'action'})
   Supply.create({:card_id=>act1.id, :amount=>1})
-  Supply.create({:card_id=>act2.id, :amount=>2})
   Player.create({:player_num=>1})
   Player.create({:player_num=>2})
   Player.create({:player_num=>3})
@@ -33,4 +31,5 @@ get('/kill')do
   Player.destroy_all
   Deck.destroy_all
   Card.destroy_all
+  erb(:index)
 end
