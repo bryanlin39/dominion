@@ -30,7 +30,7 @@ describe Player do
         Deck.create(player_id: player.id, card_id: card.id)
       end
       player.shuffle_deck
-      player.draw_hand
+      player.draw_hand(5)
       hand = Deck.where(player_id: player.id, location: "hand")
       expect(hand.length).to eq(5)
     end
@@ -47,8 +47,53 @@ describe Player do
       2.times do
         Deck.create(player_id: player.id, card_id: card.id)
       end
-      player.draw_hand
+      player.draw_hand(5)
       expect(Deck.where(player_id: player.id, location: "hand").length).to eq(5)
+    end
+  end
+
+  describe '#draw_hand' do
+    it "moves any number of cards from draw location into hand location" do
+      player = Player.create(name: 'Ilene')
+      card = Card.create(name: 'Province')
+      card2 = Card.create(name: 'Estate')
+      5.times do
+        Deck.create(player_id: player.id, card_id: card.id)
+        Deck.update(location: 'hand')
+      end
+      deck1 = Deck.create(player_id: player.id, card_id: card.id)
+      deck2 = Deck.create(player_id: player.id, card_id: card.id)
+      deck1.update(location: 'draw')
+      deck2.update(location: 'draw')
+      2.times do
+        Deck.create(player_id: player.id, card_id: card.id)
+      end
+      player.draw_hand(3)
+      expect(Deck.where(player_id: player.id, location: "hand").length).to eq(8)
+    end
+  end
+
+  describe '#discard_hand' do
+    it "sends player's cards from hand to discard pile" do
+      player = Player.create(name: 'Ilene')
+      card = Card.create(name: 'Province')
+      5.times do
+        Deck.create(player_id: player.id, card_id: card.id)
+        Deck.update(location: 'hand')
+      end
+      player.discard_hand
+      expect(Deck.where(player_id: player.id, location: "hand").length).to eq(0)
+    end
+  end
+
+  describe '#discard_card' do
+    it "sends a specific card from the player's hand to the discard pile" do
+      player = Player.create(name: 'Ilene')
+      card = Card.create(name: 'Province')
+      Deck.create(player_id: player.id, card_id: card.id)
+      Deck.update(location: 'hand')
+      player.discard_card(card)
+      expect(Deck.where(card_id: card.id)[0].location).to eq('discard')
     end
   end
 end
