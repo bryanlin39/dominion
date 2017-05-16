@@ -61,4 +61,9 @@ class Player < ActiveRecord::Base
     total_points
   end
 
+  def trash_card(card)
+    Deck.find(card.id).delete
+  end
+
+
 end

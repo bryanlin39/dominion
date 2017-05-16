@@ -14,7 +14,9 @@ class Deck < ActiveRecord::Base
       7.times do
         player.cards.push(copper)
       end
+      player.cards = player.cards.shuffle
     end
+
   end
 
   private

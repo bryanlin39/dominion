@@ -107,4 +107,19 @@ describe Player do
       expect(player.total_victory_points).to eq(9)
     end
   end
+
+  describe '#trash_card' do
+    it "deletes the selected card from the database" do
+      player = Player.create(name: 'Ilene')
+      card = Card.create(name: 'Province')
+      province = Deck.create(player_id: player.id, card_id: card.id)
+      4.times do
+        Deck.create(player_id: player.id, card_id: card.id)
+        Deck.update(location: 'hand')
+      end
+      player.trash_card(province)
+      expect(player.cards.length).to eq(4)
+
+    end
+  end
 end
