@@ -32,8 +32,8 @@ class Supply < ActiveRecord::Base
     result = []
     Supply.all.each do |card|
       found_card = Card.find(card.card_id.to_i)
-      # result.push([found_card,card.amount])
       result.push({
+        'id'=>found_card.id,
         'name'=>found_card.name,
         'cost'=>found_card.cost,
         'rules'=>found_card.rules,

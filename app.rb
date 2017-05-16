@@ -6,18 +6,25 @@ also_reload('lib/**/*.rb')
 
 get('/') do
   @board = Supply.board
+  Deck.setup
+  Player.all.each {|player| player.draw_hand(5)}
   @player = Player.all.sample
-  #shuffle and draw
   @player.player_num.to_i+1>Player.all.length ? (@next_player=1):(@next_player=@player.player_num.to_i+1)
   erb(:index)
 end
 
 post('/:id') do
   @board = Supply.board
-  @player = Player.custom_find(starter)
-  #discard and shuffle/draw
+  @player = Player.find_player(params[:id].to_i)
+  last_player = Player.find_player(params[:last_player].to_i)
+  last_player.discard_hand
+  last_player.draw_hand(5)
   @player.player_num.to_i+1>Player.all.length ? (@next_player=1):(@next_player=@player.player_num.to_i+1)
   erb(:index)
+end
+
+get('/cards') do
+  
 end
 
 get('/kill')do

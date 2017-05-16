@@ -42,10 +42,10 @@ class Player < ActiveRecord::Base
     draw.each { |card| card.update(location: 'draw') }
   end
 
-  def find_player(id)
+  def self.find_player(id)
     found_player = nil
     Player.all.each do |player|
-      if player.id == id.to_i
+      if player.player_num == id
         found_player = player
       end
     end
@@ -65,5 +65,22 @@ class Player < ActiveRecord::Base
     Deck.find(card.id).delete
   end
 
+  def hand
+    hand_cards = Deck.where(player_id: self.id, location: 'hand')
+    result = []
+    hand_cards.each do |card|
+      found_card = Card.find(card.card_id.to_i)
+      result.push({
+        'name'=>found_card.name,
+        'cost'=>found_card.cost,
+        'rules'=>found_card.rules,
+        'card_type'=>found_card.card_type,
+        'money_value'=>found_card.money_value,
+        'victory_value'=>found_card.victory_value,
+        'image'=>found_card.image
+        })
+    end
+    result
+  end
 
 end

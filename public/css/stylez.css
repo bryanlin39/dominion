@@ -1,6 +1,6 @@
 #title {
-  text-align: center;
-  font-size: 50px;
+  margin: auto;
+  display: block;
 }
 
 body{
@@ -14,13 +14,12 @@ body{
   padding: 20px;
 }
 .cardDiv{
-  height: 200px;
   padding: 5px;
   text-align: center;
 }
 .card{
+  height: 250px;
   margin: auto;
-  height: 175px;
 }
 
 #playerDiv {
