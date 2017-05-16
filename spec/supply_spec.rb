@@ -1,6 +1,16 @@
 require('spec_helper')
 
 describe(Supply) do
+  describe('#gain_card') do
+    it "moves a card from the board to a player's deck" do
+      player = Player.create(name: 'Ilene')
+      province = Card.create(name: 'Province')
+      province_supply = Supply.create(card_id: province.id, amount: 10)
+      province_supply.gain_card(player)
+      expect(province_supply.amount).to eq(9)
+      expect(player.cards.include?(province)).to eq(true)
+    end
+  end
   describe('.game_over?') do
     it('returns sets result to true if game is over') do
       act1 = Card.create({:name=>'action1', :card_type=>'action'})
