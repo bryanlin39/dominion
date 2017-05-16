@@ -3,7 +3,8 @@ class Supply < ActiveRecord::Base
 
   def gain_card(player)
     self.amount -= 1
-    player.cards.push(self)
+    card = Card.where(id: self.card_id())
+    player.cards.push(card)
   end
 
   def self.game_over?
