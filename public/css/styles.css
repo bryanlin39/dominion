@@ -15,11 +15,11 @@ body{
 }
 .cardDiv{
   height: 200px;
-  padding: 10px;
+  padding: 5px;
+  text-align: center;
 }
 .card{
   margin: auto;
-  background: red;
   height: 175px;
 }
 
@@ -32,9 +32,13 @@ body{
 #titleDiv{
   height: 20%;
   margin: 0px;
+  padding-left: 20px;
 }
 #titleDiv h1,h3{
   display: inline-block;
+}
+#titleDiv h3{
+  margin-left: 30%;
 }
 #playerDiv > .row{
   height: 80%;
@@ -48,4 +52,8 @@ body{
 
 #statsDiv button{
   margin-top: 40%;
+}
+
+#endTurn{
+  display: none;
 }
