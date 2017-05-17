@@ -1,0 +1,66 @@
+#title {
+  margin: auto;
+  display: block;
+  box-shadow: 10px 10px 5px #493019;
+}
+
+body{
+  padding-top: 40px;
+  background-image: url('../img/texture.jpg');
+}
+
+#boardDiv {
+  margin: auto;
+  background-color: none;
+  height: 800px;
+  padding: 20px;
+}
+.cardDiv{
+  padding: 5px;
+  text-align: center;
+}
+.cardDiv img {
+  box-shadow: 5px 5px 2px #493019;
+  border-radius: 5px;
+}
+
+.card{
+  height: 250px;
+  margin: auto;
+
+}
+
+#playerDiv {
+  color: white;
+  margin: auto;
+  background-image: url('../img/wood_texture.jpg');
+  height: 300px;
+  padding: 0px;
+}
+#titleDiv{
+  height: 20%;
+  margin: 0px;
+  padding-left: 20px;
+}
+#titleDiv h1,h3{
+  display: inline-block;
+}
+#titleDiv h3{
+  margin-left: 30%;
+}
+#playerDiv > .row{
+  height: 80%;
+
+}
+#handDiv{
+  height: 100%;
+  padding: 20px;
+}
+
+#statsDiv button{
+  margin-top: 40%;
+}
+
+#endTurn{
+  display: none;
+}
