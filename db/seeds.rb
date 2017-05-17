@@ -10,6 +10,16 @@ class Player < ActiveRecord::Base
   has_many :decks
   has_many :cards, through: :decks
 end
+class Deck < ActiveRecord::Base
+  belongs_to :player
+  belongs_to :card
+end
+
+Supply.destroy_all
+Player.destroy_all
+Deck.destroy_all
+Card.destroy_all
+
 #rules order is $ action buy draw trash
 estate=Card.create({:name=>'Estate', :cost=>2, :rules=>'', :money_value=>0, :victory_value=>1, :card_type=>'victory', :image =>'/img/estate.jpg' })
 duchy=Card.create({:name=>'Duchy', :cost=>5, :rules=>'', :money_value=>0, :victory_value=>3, :card_type=>'victory', :image =>'/img/duchy.jpg' })

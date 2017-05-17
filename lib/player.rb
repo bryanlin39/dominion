@@ -31,10 +31,6 @@ class Player < ActiveRecord::Base
     hand.each { |card| card.update(location: "discard") }
   end
 
-  def discard_card(card)
-    Deck.where(card_id: card.id).update(location: "discard")
-  end
-
   #use shuffle_deck when draw pile is empty
   def shuffle_deck
     draw = Deck.where(player_id: self.id, location: "discard")
@@ -72,6 +68,7 @@ class Player < ActiveRecord::Base
       found_card = Card.find(card.card_id.to_i)
       result.push({
         'name'=>found_card.name,
+        'deck_id'=>card.id,
         'cost'=>found_card.cost,
         'rules'=>found_card.rules,
         'card_type'=>found_card.card_type,

@@ -25,17 +25,28 @@ post('/:id') do
 end
 
 #ajax methods
+get('/draw') do
+  player = Player.find_player(params[:id].to_i)
+  player.draw_hand(params[:number_to_draw].to_i)
+  return player.hand.to_json
+end
 
 get('/buy') do
   player = Player.find_player(params[:id].to_i)
-  supply = Supply.where(card_id: params.fetch('card_id'))
-  supply.gain_card(player)
+  supply = Supply.where(card_id: params[:card_id].to_i)
+  supply[0].gain_card(player)
+  return supply[0].amount.to_json
 end
 
 get('/trash') do
   player = Player.find_player(params[:id].to_i)
   card = Card.where(id: params.fetch('card_id'))
   player.trash_card(card)
+end
+
+get('/discard') do
+  Deck.find(params[:deck_id].to_i).update({:location=>'discard'})
+  return 'test'
 end
 
 get('/kill')do

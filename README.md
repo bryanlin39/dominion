@@ -2,9 +2,9 @@
 #### By David Shin, Bryan Lin, Jonathan Kang, Ilene Gorski
 
 ## This is a working application of the board game Dominion
-<!-- *
+*
 * Allows to add, view, update and delete volunteers
-* Allows to assign volunteers to projects -->
+* Allows to assign volunteers to projects
 
 ## Setup
 * Before starting, make sure you have Postgres installed: https://www.learnhowtoprogram.com/ruby/ruby-database-basics/installing-postgres-7fb0cff7-a0f5-4b61-a0db-8a928b9f67ef
