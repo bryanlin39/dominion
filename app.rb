@@ -6,6 +6,7 @@ also_reload('lib/**/*.rb')
 
 get('/') do
   @board = Supply.board
+  Deck.destroy_all
   Deck.setup
   Player.all.each {|player| player.draw_hand(5)}
   @player = Player.all.sample
@@ -29,9 +30,12 @@ get('/draw') do
   player.draw_hand(params[:number_to_draw].to_i)
   return player.hand.to_json
 end
-get('buy') do
+get('/buy') do
   player = Player.find_player(params[:id].to_i)
   # player.gain somthing things
+end
+get('/discard') do
+  Deck.find(params[:deck_id].to_i).update({:location=>'discard'})
 end
 
 get('/kill')do

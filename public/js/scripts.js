@@ -23,26 +23,38 @@ $(document).ready(function(){
   }
   for(i=0;i<handArr.length;i++){
     moves['money']+=handArr[i]['money_value']
-    $('#handDiv').append('<div class="col-md-2 cardDiv"><img class="card board_cards" src="'+handArr[i].image+'" alt="'+handArr[i].id+'"></div>')
+    $('#handDiv').append('<div class="col-md-2 cardDiv"><img class="card hand_cards" src="'+handArr[i].image+'" alt="'+handArr[i].deck_id+'" data-rules='+handArr[i].rules+' data-type='+handArr[i].card_type+'></div>')
   }
   $('#moneyText').text('Money: '+moves['money']);
 
   $('.hand_cards').click(function(){
-    if(actionPhase&&moves['actions']>0){
-      //do the thing
-      // if(card says to draw){
-      //   $.ajax({
-      //     url: '/draw',
-      //     data: {'id':window.document['URL'][window.document['URL'].length-1], 'number_to_draw':1},
-      //     success: function(result){
-      //       alert(result)
-      //       //update handArr
-      //       //create new card divs
-      //     }
-      //   })
-      // }
+    if(actionPhase&&moves['actions']>0&&$(this).data('type')=='action'){
+      $.ajax({
+        url: '/discard',
+        data: {'deck_id':this.alt},
+      })
+      rules=$(this).data('rules');
+      moves['actions'] += parseInt(rules[1])
+      moves['buys'] += parseInt(rules[2])
+      moves['money'] += parseInt(rules[0])
+      if(parseInt(rules[3])!=0){
+        $('#handDiv').empty();
+        $.ajax({
+          url: '/draw',
+          data: {'id':window.document['URL'][window.document['URL'].length-1],'number_to_draw':parseInt(rules[3])},
+          dataType: 'json',
+          success: function(result){
+            moves['money']=0;
+            for(i=0;i<result.length;i++){
+              moves['money']+=result[i]['money_value']
+              $('#handDiv').append('<div class="col-md-2 cardDiv"><img class="card board_cards" src="'+result[i].image+'" alt="'+result[i].id+'"></div>')
+            }
+            $('#moneyText').text('Money: '+moves['money']);
+          }
+        })
+      }
       moves['actions']--;
-      $('#actText').text(moves['actions'])
+      $('#actText').text('Actions: '+moves['actions'])
     }
     if(moves['actions']===0){
       endAct();
@@ -82,5 +94,13 @@ $(document).ready(function(){
       }
     })
   })
-
+  $('#buy').click(function(){
+    $.ajax({
+      url: '/buy',
+      data: {'id':window.document['URL'][window.document['URL'].length-1],'card_id':1},
+      success: function(result){
+        alert('You bought'+result+'!')
+      }
+    })
+  })
 });
