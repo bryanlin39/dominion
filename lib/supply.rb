@@ -2,9 +2,10 @@ class Supply < ActiveRecord::Base
   has_many :cards
 
   def gain_card(player)
-    self.amount -= 1
+    new_amount = self.amount.to_i-1
+    self.update({:amount=> new_amount})
     card = Card.where(id: self.card_id())
-    player.cards.push(card)
+    player.cards.push(card[0])
   end
 
   def self.game_over?
@@ -21,7 +22,6 @@ class Supply < ActiveRecord::Base
         counter+=1;
       end
     end
-
     if counter>=3||province_amount<=0
       result = true;
     end

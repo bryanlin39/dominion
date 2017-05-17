@@ -7,11 +7,7 @@ class Deck < ActiveRecord::Base
   def self.setup
     estate = Card.where(name: 'Estate')
     copper = Card.where(name: 'Copper')
-    smithy = Card.where(name: 'Smithy')
     Player.all.each do |player|
-      if player.name=='David'
-        player.cards.push(smithy)
-      end
       3.times do
         player.cards.push(estate)
       end

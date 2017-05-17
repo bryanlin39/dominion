@@ -19,7 +19,7 @@ $(document).ready(function(){
   handArr = $('#boardData').data('hand');
   // console.log(handArr)
   for(i=0;i<boardArr.length;i++){
-    $('#boardRow').append('<div class="col-md-2 cardDiv"><img class="card board_cards" src="'+boardArr[i].image+'" alt="'+boardArr[i].id+'"><p>'+boardArr[i].amount+'</p></div>')
+    $('#boardRow').append('<div class="col-md-2 cardDiv"><img class="card board_cards" src="'+boardArr[i].image+'" alt="'+boardArr[i].id+'" data-cost='+boardArr[i].cost+'><p>'+boardArr[i].amount+'</p></div>')
   }
   for(i=0;i<handArr.length;i++){
     moves['money']+=handArr[i]['money_value']
@@ -27,33 +27,41 @@ $(document).ready(function(){
   }
   $('#moneyText').text('Money: '+moves['money']);
 
-  $('.hand_cards').click(function(){
-    if(actionPhase&&moves['actions']>0&&$(this).data('type')=='action'){
+  $('body').on('click', 'img.hand_cards', function(){
+    if(actionPhase && moves['actions']>0 && $(this).data('type')=='action'){
+      console.log('action')
       $.ajax({
         url: '/discard',
         data: {'deck_id':this.alt},
+        success: function() {
+        }
       })
-      rules=$(this).data('rules');
+      rules=$(this).data('rules').toString();
+      console.log(moves, 'before')
       moves['actions'] += parseInt(rules[1])
       moves['buys'] += parseInt(rules[2])
+      moves['money']=0;
       moves['money'] += parseInt(rules[0])
-      if(parseInt(rules[3])!=0){
-        $('#handDiv').empty();
-        $.ajax({
-          url: '/draw',
-          data: {'id':window.document['URL'][window.document['URL'].length-1],'number_to_draw':parseInt(rules[3])},
-          dataType: 'json',
-          success: function(result){
-            moves['money']=0;
-            for(i=0;i<result.length;i++){
-              moves['money']+=result[i]['money_value']
-              $('#handDiv').append('<div class="col-md-2 cardDiv"><img class="card board_cards" src="'+result[i].image+'" alt="'+result[i].id+'"></div>')
-            }
-            $('#moneyText').text('Money: '+moves['money']);
+
+
+      $.ajax({
+        url: '/draw',
+        data: {'id':$('#boardData').data('player'),'number_to_draw':parseInt(rules[3])},
+        dataType: 'json',
+        success: function(result){
+          $('#handDiv').empty();
+          for(i=0;i<result.length;i++){
+            moves['money']+=result[i]['money_value']
+            $('#handDiv').append('<div class="col-md-2 cardDiv"><img class="card hand_cards" src="'+result[i].image+'" alt="'+result[i].deck_id+'" data-rules='+result[i].rules+' data-type='+result[i].card_type+'></div>')
           }
-        })
-      }
+          $('#moneyText').text('Money: '+moves['money']);
+        }
+      })
+
       moves['actions']--;
+      console.log(moves, 'after')
+      $('#buyText').text('Buys: '+moves['buys'])
+      $('#moneyText').text('Money: '+moves['money'])
       $('#actText').text('Actions: '+moves['actions'])
     }
     if(moves['actions']===0){
@@ -62,13 +70,20 @@ $(document).ready(function(){
   });
 
   $('.board_cards').click(function(){
-    if(buyPhase&&moves['buys']>0){
-      amount = parseInt($(this).next().text())
-      $(this).next().text(amount-=1)
-      console.log($(this))
-      //pass this.id somewhere
+    if(buyPhase&&moves['buys']>0&&parseInt($(this).data('cost'))<=moves['money']){
+      amount_text = $(this).next()
+      $.ajax({
+        url: '/buy',
+        data: {'id':$('#boardData').data('player'),'card_id':$(this)[0].alt},
+        success: function(result){
+          amount_text.text(parseInt(result))
+          alert('You bought a card.');
+        }
+      })
       moves['buys']--;
+      moves['money'] -= parseInt($(this).data('cost'))
       $('#buyText').text('Buys: '+moves['buys'])
+      $('#moneyText').text('Money: '+moves['money'])
     }
     if(moves['buys']===0||moves['money']===0){
       //click form submit
@@ -78,29 +93,4 @@ $(document).ready(function(){
   $('#endAct').click(function(){
       endAct();
   });
-  $('#draw').click(function(){
-    $('#handDiv').empty();
-    $.ajax({
-      url: '/draw',
-      data: {'id':window.document['URL'][window.document['URL'].length-1],'number_to_draw':1},
-      dataType: 'json',
-      success: function(result){
-        moves['money']=0;
-        for(i=0;i<result.length;i++){
-          moves['money']+=result[i]['money_value']
-          $('#handDiv').append('<div class="col-md-2 cardDiv"><img class="card board_cards" src="'+result[i].image+'" alt="'+result[i].id+'"></div>')
-        }
-        $('#moneyText').text('Money: '+moves['money']);
-      }
-    })
-  })
-  $('#buy').click(function(){
-    $.ajax({
-      url: '/buy',
-      data: {'id':window.document['URL'][window.document['URL'].length-1],'card_id':1},
-      success: function(result){
-        alert('You bought'+result+'!')
-      }
-    })
-  })
 });
