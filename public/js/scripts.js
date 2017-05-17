@@ -23,7 +23,7 @@ $(document).ready(function(){
   }
   for(i=0;i<handArr.length;i++){
     moves['money']+=handArr[i]['money_value']
-    $('#handDiv').append('<div class="col-md-2 cardDiv" id="handCard'+i+'><img class="card hand_cards" src="'+handArr[i].image+'" alt="'+handArr[i].deck_id+'" data-rules='+handArr[i].rules+' data-type='+handArr[i].card_type+'></div>')
+    $('#handDiv').append('<div class="col-md-2 cardDiv" id="handCard'+i+'"><img class="card hand_cards" src="'+handArr[i].image+'" alt="'+handArr[i].deck_id+'" data-rules='+handArr[i].rules+' data-type='+handArr[i].card_type+'></div>')
   }
   $('#moneyText').text('Money: '+moves['money']);
 
@@ -76,7 +76,7 @@ $(document).ready(function(){
         url: '/buy',
         data: {'id':$('#boardData').data('player'),'card_id':$(this)[0].alt},
         success: function(result){
-          amount_text.text(parseInt(result))
+          amount_text.text(parseInt(result)+' left')
           alert('You bought a card.');
         }
       })

@@ -15,6 +15,9 @@ get('/') do
 end
 
 post('/:id') do
+  # if Supply.game_over?
+  #  erb(:game_over)
+  # else
   @board = Supply.board
   @player = Player.find_player(params[:id].to_i)
   last_player = Player.find_player(params[:last_player].to_i)
