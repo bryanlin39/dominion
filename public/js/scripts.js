@@ -19,11 +19,11 @@ $(document).ready(function(){
   handArr = $('#boardData').data('hand');
   // console.log(handArr)
   for(i=0;i<boardArr.length;i++){
-    $('#boardRow').append('<div class="col-md-2 cardDiv"><img class="card board_cards" src="'+boardArr[i].image+'" alt="'+boardArr[i].id+'"><p>'+boardArr[i].amount+'</p></div>')
+    $('#boardRow').append('<div class="col-md-2 cardDiv"><img class="card board_cards" src="'+boardArr[i].image+'" alt="'+boardArr[i].id+'"><p id="card_amount">'+boardArr[i].amount+' left</p></div>')
   }
   for(i=0;i<handArr.length;i++){
     moves['money']+=handArr[i]['money_value']
-    $('#handDiv').append('<div class="col-md-2 cardDiv"><img class="card board_cards" src="'+handArr[i].image+'" alt="'+handArr[i].id+'"></div>')
+    $('#handDiv').append('<div class="col-md-2 cardDiv" id="handCard'+i+'"><img class="card board_cards" src="'+handArr[i].image+'" alt="'+handArr[i].id+'"></div>')
   }
   $('#moneyText').text('Money: '+moves['money']);
 

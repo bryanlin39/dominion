@@ -48,6 +48,16 @@ body{
 #titleDiv h3{
   margin-left: 30%;
 }
+
+#card_amount {
+  color: black;
+  font-size: 20px;
+  font-family: "Trebuchet MS", Helvetica, sans-serif;
+  margin-top: 10px;
+  border-radius: 20px;
+  background: rgba(255,255,255,0.55);
+}
+
 #playerDiv > .row{
   height: 80%;
 
@@ -58,9 +68,89 @@ body{
 }
 
 #statsDiv button{
-  margin-top: 40%;
+  margin-top: 30%;
 }
 
 #endTurn{
   display: none;
+}
+
+@keyframes example {
+  0% {left:100px; top:100px;}
+  25% {left:100px; top:100px;}
+}
+
+#handCard0 {
+  position: absolute;
+    top: 0%;
+    left: 10%;
+    width: auto;
+    height: 110px;
+    margin-top: 0px;
+    margin-left: 0px;
+    -webkit-animation-name: example;
+    -webkit-animation-duration: 2s;
+    -webkit-animation-delay: -1s;
+    animation-name: example;
+    animation-duration: 3s;
+}
+#handCard1 {
+  position: absolute;
+    top: 0%;
+    left: 23%;
+    width: auto;
+    height: 110px;
+    margin-top: 0px;
+    margin-left: 30px;
+    -webkit-animation-name: example;
+    -webkit-animation-duration: 2s;
+    -webkit-animation-delay: -1s;
+    animation-name: example;
+    animation-duration: 3s;
+}
+#handCard2 {
+  position: absolute;
+    top: 0%;
+    left: 36%;
+    width: auto;
+    height: 110px;
+    margin-top: 0px;
+    margin-left: 60px;
+    -webkit-animation-name: example;
+    -webkit-animation-duration: 2s;
+    -webkit-animation-delay: -1s;
+    animation-name: example;
+    animation-duration: 3s;
+}
+#handCard3 {
+  position: absolute;
+    top: 0%;
+    left: 49%;
+    width: auto;
+    height: 110px;
+    margin-top: 0px;
+    margin-left: 90px;
+    -webkit-animation-name: example;
+    -webkit-animation-duration: 2s;
+    -webkit-animation-delay: -1s;
+    animation-name: example;
+    animation-duration: 3s;
+}
+#handCard4 {
+  position: absolute;
+    top: 0%;
+    left: 62%;
+    width: auto;
+    height: 110px;
+    margin-top: 0px;
+    margin-left: 120px;
+    -webkit-animation-name: example;
+    -webkit-animation-duration: 2s;
+    -webkit-animation-delay: -1s;
+    animation-name: example;
+    animation-duration: 3s;
+}
+
+#statsDiv {
+  float:right;
 }
