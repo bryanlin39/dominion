@@ -30,7 +30,17 @@ $(document).ready(function(){
   $('.hand_cards').click(function(){
     if(actionPhase&&moves['actions']>0){
       //do the thing
-
+      // if(card says to draw){
+      //   $.ajax({
+      //     url: '/draw',
+      //     data: {'id':window.document['URL'][window.document['URL'].length-1], 'number_to_draw':1},
+      //     success: function(result){
+      //       alert(result)
+      //       //update handArr
+      //       //create new card divs
+      //     }
+      //   })
+      // }
       moves['actions']--;
       $('#actText').text(moves['actions'])
     }
@@ -56,14 +66,19 @@ $(document).ready(function(){
   $('#endAct').click(function(){
       endAct();
   });
-  $('#test').click(function(){
+  $('#draw').click(function(){
+    $('#handDiv').empty();
     $.ajax({
       url: '/draw',
-      //current player, # of cards
-// CHANGE CODE BELOW (obviously)
-      data: {'id':'test', 'number_to_draw':'whatever the card says its value is'},
-      success: function(){
-        //create new card divs
+      data: {'id':window.document['URL'][window.document['URL'].length-1],'number_to_draw':1},
+      dataType: 'json',
+      success: function(result){
+        moves['money']=0;
+        for(i=0;i<result.length;i++){
+          moves['money']+=result[i]['money_value']
+          $('#handDiv').append('<div class="col-md-2 cardDiv"><img class="card board_cards" src="'+result[i].image+'" alt="'+result[i].id+'"></div>')
+        }
+        $('#moneyText').text('Money: '+moves['money']);
       }
     })
   })

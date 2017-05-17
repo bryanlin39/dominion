@@ -25,13 +25,12 @@ end
 
 #ajax methods
 get('/draw') do
-# figure out how to get player id
-  player = Player.find(id)
-  player.draw_hand(params[:number_to_draw])
-  binding.pry
+  player = Player.find_player(params[:id].to_i)
+  player.draw_hand(params[:number_to_draw].to_i)
+  return player.hand.to_json
 end
 get('buy') do
-  player = Player.find(id)
+  player = Player.find_player(params[:id].to_i)
   # player.gain somthing things
 end
 
