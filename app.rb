@@ -6,6 +6,7 @@ also_reload('lib/**/*.rb')
 
 get('/') do
   @board = Supply.board
+  Deck.destroy_all
   Deck.setup
   Player.all.each {|player| player.draw_hand(5)}
   @player = Player.all.sample
