@@ -21,6 +21,7 @@ body{
 }
 .cardDiv img {
   box-shadow: 5px 5px 2px #493019;
+  border-radius: 5px;
 }
 
 .card{
