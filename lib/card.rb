@@ -3,8 +3,11 @@ class Card < ActiveRecord::Base
   has_many :players, through: :decks
   belongs_to :supplies
 
-  #rules
-  # def play(player)
-  #   player.buys=+buy_value
-  # end
+  def rules
+    rules = []
+    rules_array = self.rules.split('')
+    rules_array.each { |rule| rules.push(rule.to_i) }
+    rules
+  end
+
 end
