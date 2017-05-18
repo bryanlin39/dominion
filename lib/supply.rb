@@ -9,17 +9,16 @@ class Supply < ActiveRecord::Base
   end
 
   def self.game_over?
+    province_amount = 0
     result = false
-    if Supply.where('card_id=3')[0]!=nil
-      province_amount = Supply.where('card_id=3')[0].amount
-    else
-      province_amount = 50
-    end
     counter = 0
-    Supply.all.each do |card|
-      found_card = Card.find(card.card_id.to_i)
-      if found_card.card_type =='action'&&card.amount==0
+    Supply.all.each do |supply|
+      found_card = Card.find(supply.card_id.to_i)
+      if found_card.card_type =='action' && supply.amount==0
         counter+=1;
+      end
+      if found_card.name == 'Province'
+        province_amount = supply.amount
       end
     end
     if counter>=3||province_amount<=0

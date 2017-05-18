@@ -38,7 +38,12 @@ get('/buy') do
   player = Player.find_player(params[:id].to_i)
   supply = Supply.where(card_id: params[:card_id].to_i)
   supply[0].gain_card(player)
-  return supply[0].amount.to_json
+  if Supply.game_over?
+    return Player.winners
+  else
+    #return player.total_victory_points
+    return supply[0].amount
+  end
 end
 
 get('/trash') do

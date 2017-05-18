@@ -76,8 +76,17 @@ $(document).ready(function(){
         url: '/buy',
         data: {'id':$('#boardData').data('player'),'card_id':$(this)[0].alt},
         success: function(result){
-          amount_text.text(parseInt(result)+' left')
-          alert('You bought a card.');
+          if(isNaN(parseInt(result))){
+            actionPhase = false;
+            buyPhase = false;
+            winners = result.slice(0,-1).split(',').forEach(function(winner){
+              alert(winner);
+            })
+          }
+          else{
+            amount_text.text(parseInt(result)+' left')
+            alert('You bought a card.');
+          }
         }
       })
       moves['buys']--;

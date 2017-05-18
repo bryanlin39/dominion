@@ -57,6 +57,20 @@ class Player < ActiveRecord::Base
     total_points
   end
 
+  def self.winners
+    vp_array = [];
+    Player.all.each do |player|
+      vp_array.push(player.total_victory_points)
+    end
+    winners = []
+    Player.all.each do |player|
+      if player.total_victory_points == vp_array.max
+        winners.push player.name+','
+      end
+    end
+    winners
+  end
+
   def trash_card(card)
     Deck.find(card.id).delete
   end
