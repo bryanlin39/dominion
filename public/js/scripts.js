@@ -112,7 +112,7 @@ $(document).ready(function(){
             $('.ui-dialog-titlebar-close').remove();
             setTimeout(function(){
               $('#dialog').dialog('close');
-            }, 1500);
+            }, 2000);
             $('#victoryText').text('Victory Points: '+result_arr[1]);
           }
         }

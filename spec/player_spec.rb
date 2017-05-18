@@ -86,17 +86,6 @@ describe Player do
     end
   end
 
-  describe '#discard_card' do
-    it "sends a specific card from the player's hand to the discard pile" do
-      player = Player.create(name: 'Ilene')
-      card = Card.create(name: 'Province')
-      Deck.create(player_id: player.id, card_id: card.id)
-      Deck.update(location: 'hand')
-      player.discard_card(card)
-      expect(Deck.where(card_id: card.id)[0].location).to eq('discard')
-    end
-  end
-
   describe '#total_victory_points' do
     it "calculates the total amount of victory points for a player" do
       player = Player.create(name: 'Ilene')
