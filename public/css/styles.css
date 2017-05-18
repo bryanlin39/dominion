@@ -18,16 +18,23 @@ body{
 .cardDiv{
   padding: 5px;
   text-align: center;
+  height: 300px;
+}
+.cardDiv img:hover {
+  position:absolute;
+  top:-90px;
+  width:225px;
+  height:auto;
+  display:block;
+  z-index:999;
 }
 .cardDiv img {
   box-shadow: 5px 5px 2px #493019;
   border-radius: 5px;
 }
-
 .card{
   height: 250px;
   margin: auto;
-
 }
 
 #playerDiv {
@@ -156,5 +163,15 @@ body{
 }
 
 #dialog {
-  background-color: black;
+  background: rgba(255,255,255,0.55);
+  border-radius: 25px;
+  color: black;
+  text-align: center;
+  font-family: "Trebuchet MS", Helvetica, sans-serif;
+}
+#dialog h2 {
+  padding-top: 15px;
+}
+#dialog img {
+  border-radius: 10px;
 }

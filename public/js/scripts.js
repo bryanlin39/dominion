@@ -19,7 +19,7 @@ $(document).ready(function(){
   handArr = $('#boardData').data('hand');
   // console.log(handArr)
   for(i=0;i<boardArr.length;i++){
-    $('#boardRow').append('<div class="col-md-2 cardDiv"><img class="card board_cards" src="'+boardArr[i].image+'" alt="'+boardArr[i].id+'" data-cost='+boardArr[i].cost+'><p id="card_amount">'+boardArr[i].amount+' left</p></div>')
+    $('#boardRow').append('<div class="col-md-2 cardDiv"><img class="card board_cards" src="'+boardArr[i].image+'" alt="'+boardArr[i].id+'" data-cost='+boardArr[i].cost+'><br><p id="card_amount">'+boardArr[i].amount+' left</p></div>')
   }
   for(i=0;i<handArr.length;i++){
     moves['money']+=handArr[i]['money_value']
@@ -87,8 +87,13 @@ $(document).ready(function(){
           else{
             amount_text.text(parseInt(result)+' left')
             $('#dialog').empty();
-            $('#dialog').append('<h2>You bought </h2><br><img src="'+img[0].src+'" id="bought_card_image">')
-            $("#dialog").dialog("open");
+            $('#dialog').append('<h2>You bought:</h2><br><img src="'+img[0].src+'" id="bought_card_image">')
+            $("#dialog").dialog("open")
+            $(".ui-dialog-titlebar-close").remove();
+            setTimeout(function() {
+              $('#dialog').dialog("close");
+            }, 1500);
+            ;
           }
         }
       })
@@ -104,8 +109,8 @@ $(document).ready(function(){
 
   $("#dialog").dialog({
   autoOpen: false,
-  height: 700,
-  width: 700,
+  height: 650,
+  width: 500,
   draggable: true,
   resizable: false,
   closeOnEscape: false

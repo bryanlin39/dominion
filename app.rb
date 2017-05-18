@@ -39,10 +39,10 @@ get('/buy') do
   supply = Supply.where(card_id: params[:card_id].to_i)
   supply[0].gain_card(player)
   if Supply.game_over?
-    return Player.winners
+    return Player.winners.to_json
   else
     #return player.total_victory_points
-    return supply[0].amount
+    return supply[0].amount.to_json
   end
 end
 
