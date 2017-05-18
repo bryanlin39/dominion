@@ -1,5 +1,5 @@
 # Dominion
-#### By David Shin, Bryan Lin, Jonathan Kang, Ilene Gorski
+#### By Bryan Lin, Ilene Gorski, David Shin, Jonathan Kang
 
 ## This is a working application of the board game Dominion
 
@@ -34,15 +34,10 @@
 
 * The card amount can drop below 0.
 * The card amount text disappears when you hover over a card on the board.
-* 
 
 ## Support and contact details
 
-_{If you run into any issues, please contact Epicodus}_
-
-## Technologies Used
-
-_{Created using HTML, CSS, Bootstrap, Ruby and Sinatra.}_
+Contact Bryan with any and all complaints about the project or your life in general.
 
 ### License
 

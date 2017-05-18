@@ -18,7 +18,7 @@ $(document).ready(function(){
   boardArr = $('#boardData').data('board');
   handArr = $('#boardData').data('hand');
   for(i=0;i<boardArr.length;i++){
-    $('#boardRow').append('<div class="col-md-2 cardDiv"><img class="card board_cards" src="'+boardArr[i].image+'" alt="'+boardArr[i].id+'" data-cost='+boardArr[i].cost+'><br><p id="card_amount">'+boardArr[i].amount+' left</p></div>')
+    $('#boardRow').append('<div class="col-md-2 cardDiv"><img class="card board_cards" src="'+boardArr[i].image+'" alt="'+boardArr[i].id+'" data-cost='+boardArr[i].cost+' data-amount='boardArr[i].amount'><br><p id="card_amount">'+boardArr[i].amount+' left</p></div>')
   }
   for(i=0;i<handArr.length;i++){
     moves['money']+=handArr[i]['money_value']
@@ -68,7 +68,7 @@ $(document).ready(function(){
   });
 
   $('.board_cards').click(function(){
-    if(buyPhase&&moves['buys']>0&&parseInt($(this).data('cost'))<=moves['money']){
+    if(buyPhase&&moves['buys']>0&&parseInt($(this).data('cost'))<=moves['money']&&parseInt($(this).data('amount'))!=0){
       amount_text = $(this).next().next()
       img = $(this)
       $.ajax({
