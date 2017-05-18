@@ -18,7 +18,7 @@ $(document).ready(function(){
   boardArr = $('#boardData').data('board');
   handArr = $('#boardData').data('hand');
   for(i=0;i<boardArr.length;i++){
-    $('#boardRow').append('<div class="col-md-2 cardDiv"><img class="card board_cards" src="'+boardArr[i].image+'" alt="'+boardArr[i].id+'" data-cost='+boardArr[i].cost+' data-amount='boardArr[i].amount'><br><p id="card_amount">'+boardArr[i].amount+' left</p></div>')
+    $('#boardRow').append('<div class="col-md-2 cardDiv"><img class="card board_cards" src="'+boardArr[i].image+'" alt="'+boardArr[i].id+'" data-cost='+boardArr[i].cost+' data-amount='+boardArr[i].amount+'><br><p id="card_amount">'+boardArr[i].amount+' left</p></div>')
   }
   for(i=0;i<handArr.length;i++){
     moves['money']+=handArr[i]['money_value']
@@ -47,8 +47,7 @@ $(document).ready(function(){
         dataType: 'json',
         success: function(result){
           $('#handDiv').empty();
-          console.log(result[result.length-1])
-          $('#deckCount').text(result[result.length-1]['deck'])
+          $('#deckBackDiv h1').text(result[result.length-1]['deck'])
           for(i=0;i<result.length-1;i++){
             moves['money']+=result[i]['money_value']
             $('#handDiv').append('<div class="col-md-2 cardDiv"><img class="card hand_cards" src="'+result[i].image+'" alt="'+result[i].deck_id+'" data-rules='+result[i].rules+' data-type='+result[i].card_type+'></div>')
