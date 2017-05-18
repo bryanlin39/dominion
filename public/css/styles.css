@@ -25,7 +25,7 @@ body{
   text-align: center;
   height: 300px;
 }
-.cardDiv img:hover {
+.cardDiv img:not(#backImg):hover {
   position:absolute;
   top:-90px;
   width:225px;
@@ -43,6 +43,16 @@ body{
 .card{
   height: 250px;
   margin: auto;
+}
+#deckBackDiv img{
+  margin-left: -4%;
+}
+#deckBackDiv h1{
+  margin-top: -10%;
+  border-radius: 7px;
+  color: black;
+  text-align: center;
+  background: rgba(255,255,255,0.7);
 }
 
 #playerDiv {
@@ -80,7 +90,6 @@ body{
 
 #playerDiv > .row{
   height: 80%;
-
 }
 #handDiv{
   height: 100%;
@@ -178,16 +187,20 @@ body{
   float:right;
 }
 
-#dialog {
+.dialog-box {
   background: rgba(255,255,255,0.55);
   border-radius: 25px;
   color: black;
   text-align: center;
   font-family: "Trebuchet MS", Helvetica, sans-serif;
 }
-#dialog h2 {
+.dialog-box h2 {
   padding-top: 15px;
 }
-#dialog img {
+.dialog-box img {
   border-radius: 10px;
+}
+
+#game-over h1 {
+  padding-top: 60px;
 }

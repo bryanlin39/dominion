@@ -17,7 +17,6 @@ function endAct() {
 $(document).ready(function(){
   boardArr = $('#boardData').data('board');
   handArr = $('#boardData').data('hand');
-  // console.log(handArr)
   for(i=0;i<boardArr.length;i++){
     $('#boardRow').append('<div class="col-md-2 cardDiv"><img class="card board_cards" src="'+boardArr[i].image+'" alt="'+boardArr[i].id+'" data-cost='+boardArr[i].cost+'><br><p id="card_amount">'+boardArr[i].amount+' left</p></div>')
   }
@@ -29,7 +28,6 @@ $(document).ready(function(){
 
   $('body').on('click', 'img.hand_cards', function(){
     if(actionPhase && moves['actions']>0 && $(this).data('type')=='action'){
-      console.log('action')
       $.ajax({
         url: '/discard',
         data: {'deck_id':this.alt},
@@ -37,7 +35,6 @@ $(document).ready(function(){
         }
       })
       rules=$(this).data('rules').toString();
-      console.log(moves, 'before')
       moves['actions'] += parseInt(rules[1])
       moves['buys'] += parseInt(rules[2])
       moves['money']=0;
@@ -50,7 +47,9 @@ $(document).ready(function(){
         dataType: 'json',
         success: function(result){
           $('#handDiv').empty();
-          for(i=0;i<result.length;i++){
+          console.log(result[result.length-1])
+          $('#deckCount').text(result[result.length-1]['deck'])
+          for(i=0;i<result.length-1;i++){
             moves['money']+=result[i]['money_value']
             $('#handDiv').append('<div class="col-md-2 cardDiv"><img class="card hand_cards" src="'+result[i].image+'" alt="'+result[i].deck_id+'" data-rules='+result[i].rules+' data-type='+result[i].card_type+'></div>')
           }
@@ -59,7 +58,6 @@ $(document).ready(function(){
       })
 
       moves['actions']--;
-      console.log(moves, 'after')
       $('#buyText').text('Buys: '+moves['buys'])
       $('#moneyText').text('Money: '+moves['money'])
       $('#actText').text('Actions: '+moves['actions'])
@@ -71,21 +69,43 @@ $(document).ready(function(){
 
   $('.board_cards').click(function(){
     if(buyPhase&&moves['buys']>0&&parseInt($(this).data('cost'))<=moves['money']){
-      amount_text = $(this).next()
+      amount_text = $(this).next().next()
       img = $(this)
       $.ajax({
         url: '/buy',
         data: {'id':$('#boardData').data('player'),'card_id':$(this)[0].alt},
         success: function(result){
-          if(isNaN(parseInt(result))){
+          result = result.substr(1,result.length-2)
+          result_arr = []
+          result.split(',').forEach(function(c){
+            c.replace(/"/g, "");
+            result_arr.push(c.replace(/"/g, ""));
+          })
+          console.log(result_arr)
+          if(result_arr[result_arr.length-1]=='true'){
+            $('#endTurn').hide();
             actionPhase = false;
             buyPhase = false;
-            winners = result.slice(0,-1).split(',').forEach(function(winner){
-              alert(winner);
-            })
+            if(result_arr.length>=3){
+              answer = ''
+              for(i=0; i<result_arr.length-1; i++){
+                if(i==result_arr.length-2){
+                  answer += ' and '+result_arr[i];
+                }
+                else{
+                  answer += result_arr[i]+', '
+                }
+              }
+              $('#game-over').prepend('<h1>Tie! The winners are '+answer+'!</h1>')
+            }
+            else{
+              $('#game-over').prepend('<h1>The winner is '+result_arr[0]+'!</h1>')
+            }
+            $("#game-over").dialog("open");
+            $('.ui-dialog-titlebar-close').remove();
           }
           else{
-            amount_text.text(parseInt(result)+' left')
+            amount_text.text(parseInt(result_arr[0])+' left')
             $('#dialog').empty();
             $('#dialog').append('<h2>You bought </h2><br><img src="'+img[0].src+'">')
             $("#dialog").dialog("open");
@@ -93,6 +113,7 @@ $(document).ready(function(){
             setTimeout(function(){
               $('#dialog').dialog('close');
             }, 1500);
+            $('#victoryText').text('Victory Points: '+result_arr[1]);
           }
         }
       })
@@ -108,8 +129,16 @@ $(document).ready(function(){
 
   $("#dialog").dialog({
   autoOpen: false,
-  height: 700,
-  width: 700,
+  height: 650,
+  width: 500,
+  draggable: true,
+  resizable: false,
+  closeOnEscape: false
+  });
+  $("#game-over").dialog({
+  autoOpen: false,
+  height: 250,
+  width: 450,
   draggable: true,
   resizable: false,
   closeOnEscape: false

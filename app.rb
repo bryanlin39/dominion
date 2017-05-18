@@ -5,7 +5,7 @@ Dir[File.dirname(__FILE__) + '/lib/*.rb'].each { |file| require file }
 also_reload('lib/**/*.rb')
 
 get('/') do
-  @board = Supply.board
+  @board = Supply.order('card_id ASC').board
   Deck.destroy_all
   Deck.setup
   Player.all.each {|player| player.draw_hand(5)}
@@ -28,7 +28,9 @@ end
 get('/draw') do
   player = Player.find_player(params[:id].to_i)
   player.draw_hand(params[:number_to_draw].to_i)
-  return player.hand.to_json
+  hand = player.hand
+  hand.push({:deck=>player.deck_size})
+  return hand.to_json
 end
 
 get('/buy') do
@@ -39,7 +41,7 @@ get('/buy') do
     return Player.winners.to_json
   else
     #return player.total_victory_points
-    return supply[0].amount.to_json
+    return [supply[0].amount, player.total_victory_points, false].to_json
   end
 end
 

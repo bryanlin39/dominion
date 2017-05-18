@@ -15,9 +15,9 @@
   <div class="row">
     <div class="col-md-9" id="handDiv">
     </div>
-    <div class="col-md-1">
-      <div class="cardDiv"><img class="card hand_cards" id='backImg' src="/img/back.jpg"></div>'
-      <h5></h5>
+    <div class="col-md-1" id='deckBackDiv'>
+      <div class="cardDiv"><img class="card" id='backImg' src="/img/back.jpg"></div>
+      <h1><%=@player.deck_size%></h1>
     </div>
     <div class="col-md-2" id='statsDiv'>
       <h4 id='moneyText'></h4>
@@ -33,4 +33,5 @@
   </div>
 </div>
 
-<div id="dialog"></div>
+<div id="dialog" class='dialog-box'></div>
+<div id="game-over" class='dialog-box'><a href="/kill" class='btn btn-success'>Play Again</a></div>

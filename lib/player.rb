@@ -65,9 +65,10 @@ class Player < ActiveRecord::Base
     winners = []
     Player.all.each do |player|
       if player.total_victory_points == vp_array.max
-        winners.push player.name+','
+        winners.push player.name
       end
     end
+    winners.push(true)
     winners
   end
 
@@ -99,6 +100,10 @@ class Player < ActiveRecord::Base
     Player.create({:name=>'Ilene', :victory_points=>0, :player_num=>1})
     Player.create({:name=>'Jon', :victory_points=>0, :player_num=>2})
     Player.create({:name=>'Bryan', :victory_points=>0, :player_num=>4})
+  end
+
+  def deck_size
+    Deck.where(player_id: self.id, location: 'draw').length
   end
 
 end

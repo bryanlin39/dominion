@@ -17,11 +17,13 @@ class Supply < ActiveRecord::Base
       if found_card.card_type =='action' && supply.amount==0
         counter+=1;
       end
-      if found_card.name == 'Province'
+      if found_card.name == 'Copper'
+      # if found_card.name == 'Province'
         province_amount = supply.amount
       end
     end
-    if counter>=3||province_amount<=0
+    if counter>=3||province_amount<=59
+    # if counter>=3||province_amount<=50
       result = true;
     end
     result
@@ -58,7 +60,7 @@ class Supply < ActiveRecord::Base
     chapel=Card.create({:name=>'Chapel', :cost=>2, :rules=>'00004', :money_value=>0, :victory_value=>0, :card_type=>'action', :image =>'/img/chapel.jpg' })
     market=Card.create({:name=>'Market', :cost=>5, :rules=>'11110', :money_value=>0, :victory_value=>0, :card_type=>'action', :image =>'/img/market.jpg' })
     woodcutter=Card.create({:name=>'Woodcutter', :cost=>3, :rules=>'20100', :money_value=>0, :victory_value=>0, :card_type=>'action', :image =>'/img/woodcutter.jpg' })
-    
+
     Supply.create({:card_id=>estate.id, :amount=>24})
     Supply.create({:card_id=>duchy.id, :amount=>12})
     Supply.create({:card_id=>province.id, :amount=>12})
