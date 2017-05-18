@@ -38,6 +38,7 @@ get('/buy') do
   player = Player.find_player(params[:id].to_i)
   supply = Supply.where(card_id: params[:card_id].to_i)
   supply[0].gain_card(player)
+  @bought_card = Card.find(params[:card_id].to_i)
   return supply[0].amount.to_json
 end
 
