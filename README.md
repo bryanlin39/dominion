@@ -32,8 +32,10 @@
 
 ## Known Bugs
 
-* The card amount can drop below 0.
 * The card amount text disappears when you hover over a card on the board.
+* Money accumulated through action cards are nullified when combo'd with another action card.
+* Some action cards do not get discarded from hand after played.
+* Styling does not conform to the size of the div when the game ends.
 
 ## Support and contact details
 
