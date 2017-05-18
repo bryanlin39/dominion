@@ -92,7 +92,7 @@ $(document).ready(function(){
             $('.ui-dialog-titlebar-close').remove();
             setTimeout(function(){
               $('#dialog').dialog('close');
-            }, 1500);
+            }, 2000);
           }
         }
       })
@@ -108,8 +108,8 @@ $(document).ready(function(){
 
   $("#dialog").dialog({
   autoOpen: false,
-  height: 700,
-  width: 700,
+  height: 650,
+  width: 500,
   draggable: true,
   resizable: false,
   closeOnEscape: false

@@ -27,7 +27,8 @@ body{
 }
 .cardDiv img:hover {
   position:absolute;
-  top:-90px;
+  top:-50px;
+  left:-20px;
   width:225px;
   height:auto;
   display:block;
@@ -179,7 +180,8 @@ body{
 }
 
 #dialog {
-  background: rgba(255,255,255,0.55);
+  background-image: url('../img/marble.jpg');
+  border: 2px solid grey;
   border-radius: 25px;
   color: black;
   text-align: center;

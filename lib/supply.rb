@@ -55,10 +55,12 @@ class Supply < ActiveRecord::Base
     gold=Card.create({:name=>'Gold', :cost=>6, :rules=>'', :money_value=>3, :victory_value=>0, :card_type=>'treasure', :image =>'/img/gold.jpg' })
     smithy=Card.create({:name=>'Smithy', :cost=>4, :rules=>'00030', :money_value=>0, :victory_value=>0, :card_type=>'action', :image =>'/img/smithy.jpg' })
     village=Card.create({:name=>'Village', :cost=>3, :rules=>'02010', :money_value=>0, :victory_value=>0, :card_type=>'action', :image =>'/img/village.jpg' })
-    chapel=Card.create({:name=>'Chapel', :cost=>2, :rules=>'00004', :money_value=>0, :victory_value=>0, :card_type=>'action', :image =>'/img/chapel.jpg' })
+    # chapel=Card.create({:name=>'Chapel', :cost=>2, :rules=>'00004', :money_value=>0, :victory_value=>0, :card_type=>'action', :image =>'/img/chapel.jpg' })
     market=Card.create({:name=>'Market', :cost=>5, :rules=>'11110', :money_value=>0, :victory_value=>0, :card_type=>'action', :image =>'/img/market.jpg' })
     woodcutter=Card.create({:name=>'Woodcutter', :cost=>3, :rules=>'20100', :money_value=>0, :victory_value=>0, :card_type=>'action', :image =>'/img/woodcutter.jpg' })
-    
+    festival=Card.create({:name=>'Festival', :cost=>5, :rules=>'22100', :money_value=>0, :victory_value=>0, :card_type=>'action', :image =>'/img/festival.jpg' })
+    laboratory=Card.create({:name=>'Laboratory', :cost=>5, :rules=>'01020', :money_value=>0, :victory_value=>0, :card_type=>'action', :image =>'/img/laboratory.jpg' })
+
     Supply.create({:card_id=>estate.id, :amount=>24})
     Supply.create({:card_id=>duchy.id, :amount=>12})
     Supply.create({:card_id=>province.id, :amount=>12})
@@ -67,9 +69,11 @@ class Supply < ActiveRecord::Base
     Supply.create({:card_id=>gold.id, :amount=>30})
     Supply.create({:card_id=>smithy.id, :amount=>10})
     Supply.create({:card_id=>village.id, :amount=>10})
-    Supply.create({:card_id=>chapel.id, :amount=>10})
+    # Supply.create({:card_id=>chapel.id, :amount=>10})
     Supply.create({:card_id=>market.id, :amount=>10})
     Supply.create({:card_id=>woodcutter.id, :amount=>10})
+    Supply.create({:card_id=>festival.id, :amount=>10})
+    Supply.create({:card_id=>laboratory.id, :amount=>10})
   end
 
 end
