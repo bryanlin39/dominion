@@ -15,10 +15,7 @@ get('/') do
 end
 
 post('/:id') do
-  # if Supply.game_over?
-  #  erb(:game_over)
-  # else
-  @board = Supply.board
+  @board = Supply.order('card_id ASC').board
   @player = Player.find_player(params[:id].to_i)
   last_player = Player.find_player(params[:last_player].to_i)
   last_player.discard_hand
@@ -39,10 +36,10 @@ get('/buy') do
   supply = Supply.where(card_id: params[:card_id].to_i)
   supply[0].gain_card(player)
   if Supply.game_over?
-    return Player.winners
+    return Player.winners.to_json
   else
     #return player.total_victory_points
-    return supply[0].amount
+    return supply[0].amount.to_json
   end
 end
 

@@ -9,14 +9,15 @@
 <div id="playerDiv">
   <div id='titleDiv'>
     <h1><%=@player.name%></h1>
-    <h3>Victory Points: <%=@player.total_victory_points%></h3>
-    <h3 id='phaseText'>Action Phase</h3>
+    <h1 id='victoryText'>Victory Points: <%=@player.total_victory_points%></h3>
+    <h1 id='phaseText'>Action Phase</h3>
   </div>
   <div class="row">
     <div class="col-md-9" id="handDiv">
     </div>
     <div class="col-md-1">
-      <div class="col-md-2 cardDiv"><img class="card hand_cards" src="/img/back.jpg"></div>'
+      <div class="cardDiv"><img class="card hand_cards" id='backImg' src="/img/back.jpg"></div>'
+      <h5></h5>
     </div>
     <div class="col-md-2" id='statsDiv'>
       <h4 id='moneyText'></h4>

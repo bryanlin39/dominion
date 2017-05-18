@@ -85,9 +85,10 @@ $(document).ready(function(){
             })
           }
           else{
+            console.log('test')
             amount_text.text(parseInt(result)+' left')
             $('#dialog').empty();
-            $('#dialog').append('<h2>You bought </h2><br><img src="'+img[0].src+'" id="bought_card_image">')
+            $('#dialog').append('<h2>You bought </h2><br><img src="'+img[0].src+'">')
             $("#dialog").dialog("open");
           }
         }
