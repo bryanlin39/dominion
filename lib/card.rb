@@ -5,7 +5,6 @@ class Card < ActiveRecord::Base
 
   def discard_card
     Deck.where(card_id: self.id).update(location: "discard")
-
   end
 
 end
