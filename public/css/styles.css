@@ -154,3 +154,7 @@ body{
 #statsDiv {
   float:right;
 }
+
+#dialog {
+  background-color: black;
+}

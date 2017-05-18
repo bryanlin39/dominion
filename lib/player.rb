@@ -94,4 +94,11 @@ class Player < ActiveRecord::Base
     result
   end
 
+  def self.reset_game
+    Player.create({:name=>'David', :victory_points=>0, :player_num=>3})
+    Player.create({:name=>'Ilene', :victory_points=>0, :player_num=>1})
+    Player.create({:name=>'Jon', :victory_points=>0, :player_num=>2})
+    Player.create({:name=>'Bryan', :victory_points=>0, :player_num=>4})
+  end
+
 end

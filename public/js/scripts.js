@@ -72,6 +72,7 @@ $(document).ready(function(){
   $('.board_cards').click(function(){
     if(buyPhase&&moves['buys']>0&&parseInt($(this).data('cost'))<=moves['money']){
       amount_text = $(this).next()
+      img = $(this)
       $.ajax({
         url: '/buy',
         data: {'id':$('#boardData').data('player'),'card_id':$(this)[0].alt},
@@ -85,7 +86,9 @@ $(document).ready(function(){
           }
           else{
             amount_text.text(parseInt(result)+' left')
-            alert('You bought a card.');
+            $('#dialog').empty();
+            $('#dialog').append('<h2>You bought </h2><br><img src="'+img[0].src+'" id="bought_card_image">')
+            $("#dialog").dialog("open");
           }
         }
       })
@@ -97,6 +100,15 @@ $(document).ready(function(){
     if(moves['buys']===0||moves['money']===0){
       //click form submit
     }
+  });
+
+  $("#dialog").dialog({
+  autoOpen: false,
+  height: 700,
+  width: 700,
+  draggable: true,
+  resizable: false,
+  closeOnEscape: false
   });
 
   $('#endAct').click(function(){
