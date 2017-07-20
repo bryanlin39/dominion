@@ -2,7 +2,7 @@
 
 #### Web app recreation of the board game Dominion using Ruby and JavaScript
 
-#### By Bryan Lin, Ilene Gorski, David Shin, Jonathan Kang
+### By Bryan Lin, Ilene Gorski, David Shin, Jonathan Kang
 
 ## Rules
 * Each player starts their deck with 7 coppers and 3 estates.
@@ -39,8 +39,8 @@
 * Some action cards do not get discarded from hand after played.
 * Styling does not conform to the size of the div when the game ends.
 
-## Support and contact details
-Contact Bryan with any and all complaints about the project or your life in general.
+## Support and Contact Details
+Contact Bryan (bryanlin39@gmail.com) with any and all complaints about the project or your life in general. 
 
 ### License
-*Copyright (c) 2017 Epicodus
+Copyright (c) 2017 Epicodus
